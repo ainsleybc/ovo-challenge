@@ -24,4 +24,9 @@ describe('rock, paper, scissors', () => {
     await page.clickButton('.rock');
     expect(page.getPlayerChoiceText()).toContain('rock');
   });
+
+  it('allows the user to play the game', async () => {
+    await page.clickButton('.paper');
+    expect(page.isElementPresent('.play')).toBeTruthy();
+  });
 });

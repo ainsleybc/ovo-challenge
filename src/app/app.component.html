@@ -9,3 +9,5 @@
 <section>
   <p class="player-choice">{{ playerChoice }}</p>
 </section>
+
+<button *ngIf="playerChoice" class="play" (click)="play()">Play!</button>
