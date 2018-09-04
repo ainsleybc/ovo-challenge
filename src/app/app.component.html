@@ -1,7 +1,11 @@
 <ul *ngFor="let weapon of weapons">
   <li>
-    <button [ngClass]="weapon">
+    <button [ngClass]="weapon" (click)="setPlayerChoice(weapon)">
       {{ weapon }}
     </button>
   </li>
 </ul>
+
+<section>
+  <p class="player-choice">{{ playerChoice }}</p>
+</section>

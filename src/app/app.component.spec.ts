@@ -27,4 +27,12 @@ describe('AppComponent', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelectorAll('button').length).toEqual(3);
   });
+
+  describe('setPlayerChoice', () => {
+    it('sets the players choice of weapon', () => {
+      const app = fixture.debugElement.componentInstance;
+      app.setPlayerChoice('some-weapon');
+      expect(app.playerChoice).toEqual('some-weapon');
+    });
+  });
 });

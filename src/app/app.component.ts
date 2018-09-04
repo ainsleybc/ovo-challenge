@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public weapons: Array<string> = ['rock', 'paper', 'scissors'];
+  public playerChoice: string;
+
+  public setPlayerChoice(weapon: string) {
+    this.playerChoice = weapon;
+  }
 }
