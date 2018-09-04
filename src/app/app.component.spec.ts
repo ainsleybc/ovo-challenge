@@ -1,27 +1,30 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  let fixture;
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+      declarations: [AppComponent]
+    });
+
+    fixture = TestBed.createComponent(AppComponent);
+  });
+
+  it('should create the app', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  }));
-  it(`should have as title 'ovo-challenge'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+  });
+
+  it('should have a choice of weapons to choose from', () => {
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('ovo-challenge');
-  }));
-  it('should render title in a h1 tag', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
+    expect(app.weapons).toEqual(['rock', 'paper', 'scissors']);
+  });
+
+  it('should render a button element for each weapon', () => {
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to ovo-challenge!');
-  }));
+    expect(compiled.querySelectorAll('button').length).toEqual(3);
+  });
 });

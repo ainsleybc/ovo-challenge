@@ -1,14 +1,25 @@
+import { browser, by, element } from 'protractor';
 import { AppPage } from './app.po';
 
-describe('workspace-project App', () => {
+describe('rock, paper, scissors', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('displays a rock weapon', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to ovo-challenge!');
+    expect(page.isElementPresent('.rock')).toBeTruthy();
+  });
+
+  it('displays a paper weapon', () => {
+    page.navigateTo();
+    expect(page.isElementPresent('.paper')).toBeTruthy();
+  });
+
+  it('displays a scissors weapon', () => {
+    page.navigateTo();
+    expect(page.isElementPresent('.scissors')).toBeTruthy();
   });
 });
