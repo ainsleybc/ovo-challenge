@@ -15,9 +15,15 @@ export class AppComponent {
     this.playerChoice = weapon;
   }
 
-  public play(): void {
+  public playGame(): void {
     this.computerChoice = this.getComputerChoice();
     this.winner = this.getWinner();
+  }
+
+  public resetGame(): void {
+    this.playerChoice = undefined;
+    this.computerChoice = undefined;
+    this.winner = undefined;
   }
 
   private getComputerChoice() {

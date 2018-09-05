@@ -8,9 +8,10 @@
 
 <section>
   <p class="player-choice">{{ playerChoice }}</p>
-  <button class="play" (click)="play()">Play!</button>
+  <button class="play" (click)="playGame()">Play!</button>
 </section>
 
 <section class="result">
   {{ winner }}
+  <button class="reset" (click)="resetGame()">Play again</button>
 </section>

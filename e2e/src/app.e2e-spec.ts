@@ -35,4 +35,11 @@ describe('rock, paper, scissors', () => {
     await page.clickButton('.play');
     expect(page.isElementPresent('.result')).toBeTruthy();
   });
+
+  it('allows the user to play again', async () => {
+    await page.clickButton('.paper');
+    await page.clickButton('.play');
+    await page.clickButton('.reset');
+    expect(page.isElementPresent('.rock')).toBeTruthy();
+  });
 });

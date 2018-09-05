@@ -35,26 +35,35 @@ describe('AppComponent', () => {
     });
   });
 
-  describe('play', () => {
+  describe('playGame', () => {
     it('sets the winner of the game if the game is a tie', () => {
       app.playerChoice = 'paper';
       spyOn(app, 'sample').and.returnValue(1);
-      app.play();
+      app.playGame();
       expect(app.winner).toEqual('tie');
     });
 
     it('sets the winner of the game if the player wins', () => {
       app.playerChoice = 'rock';
       spyOn(app, 'sample').and.returnValue(2);
-      app.play();
+      app.playGame();
       expect(app.winner).toEqual('player');
     });
 
     it('sets the winner of the game if the computer wins', () => {
       app.playerChoice = 'paper';
       spyOn(app, 'sample').and.returnValue(2);
-      app.play();
+      app.playGame();
       expect(app.winner).toEqual('computer');
+    });
+  });
+
+  describe('resetGame', () => {
+    it('resets the game so the user can play again', () => {
+      app.resetGame();
+      expect(app.playerChoice).toBeFalsy();
+      expect(app.computerChoice).toBeFalsy();
+      expect(app.winner).toBeFalsy();
     });
   });
 });
