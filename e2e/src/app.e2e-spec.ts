@@ -8,6 +8,10 @@ describe('rock, paper, scissors', () => {
     page.navigateTo();
   });
 
+  it('has correct heading text', () => {
+    expect(page.getHeadingText()).toEqual('Rock, Paper, Scissors');
+  });
+
   it('displays a rock weapon', () => {
     expect(page.isElementPresent('.rock')).toBeTruthy();
   });
@@ -20,25 +24,13 @@ describe('rock, paper, scissors', () => {
     expect(page.isElementPresent('.scissors')).toBeTruthy();
   });
 
-  it('selects a weapon to play with', async () => {
-    await page.clickButton('.rock');
-    expect(page.getPlayerChoiceText()).toContain('rock');
-  });
-
-  it('allows the user to play the game', async () => {
+  it('shows the result of the game', async () => {
     await page.clickButton('.paper');
-    expect(page.isElementPresent('.play')).toBeTruthy();
-  });
-
-  it('determines the winner of the game', async () => {
-    await page.clickButton('.paper');
-    await page.clickButton('.play');
     expect(page.isElementPresent('.result')).toBeTruthy();
   });
 
   it('allows the user to play again', async () => {
     await page.clickButton('.paper');
-    await page.clickButton('.play');
     await page.clickButton('.reset');
     expect(page.isElementPresent('.rock')).toBeTruthy();
   });

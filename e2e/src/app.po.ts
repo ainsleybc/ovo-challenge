@@ -9,8 +9,8 @@ export class AppPage {
     return element(by.css(elementName)).isPresent();
   }
 
-  public async getPlayerChoiceText(): Promise<string> {
-    return element(by.css('.player-choice')).getText();
+  public async getHeadingText(): Promise<string> {
+    return element(by.css('h1')).getText();
   }
 
   public async clickButton(elementName: string): Promise<void> {

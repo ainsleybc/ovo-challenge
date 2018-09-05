@@ -11,11 +11,8 @@ export class AppComponent {
   public computerChoice: string;
   public winner: string;
 
-  public setPlayerChoice(weapon: string): void {
+  public playGame(weapon: string): void {
     this.playerChoice = weapon;
-  }
-
-  public playGame(): void {
     this.computerChoice = this.getComputerChoice();
     this.winner = this.getWinner();
   }

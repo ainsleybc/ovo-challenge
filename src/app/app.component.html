@@ -1,17 +1,22 @@
-<ul *ngFor="let weapon of weapons">
-  <li>
-    <button [ngClass]="weapon" (click)="setPlayerChoice(weapon)">
-      {{ weapon }}
-    </button>
-  </li>
-</ul>
+<h1>Rock, Paper, Scissors</h1>
 
-<section>
-  <p class="player-choice">{{ playerChoice }}</p>
-  <button class="play" (click)="playGame()">Play!</button>
-</section>
+<ng-container *ngIf="!playerChoice">
+  <h2>Choose your weapon:</h2>
+  <ul *ngFor="let weapon of weapons">
+    <li>
+      <button [ngClass]="weapon" (click)="playGame(weapon)">
+        {{ weapon }}
+      </button>
+    </li>
+  </ul>
+</ng-container>
 
-<section class="result">
-  {{ winner }}
+<section *ngIf="winner">
+  <p class="computer-choice">the computer chose {{ computerChoice }}</p>
+
+  <p *ngIf="winner === 'player'" class="result">You win!</p>
+  <p *ngIf="winner === 'computer'" class="result">You lost.</p>
+  <p *ngIf="winner === 'tie'" class="result">The game was a tie</p>
+
   <button class="reset" (click)="resetGame()">Play again</button>
 </section>

@@ -22,38 +22,22 @@ describe('AppComponent', () => {
     expect(app.weapons).toEqual(['rock', 'paper', 'scissors']);
   });
 
-  it('should render a button element for each weapon', () => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelectorAll('ul button').length).toEqual(3);
-  });
-
-  describe('setPlayerChoice', () => {
-    it('sets the players choice of weapon', () => {
-      app.setPlayerChoice('some-weapon');
-      expect(app.playerChoice).toEqual('some-weapon');
-    });
-  });
-
   describe('playGame', () => {
     it('sets the winner of the game if the game is a tie', () => {
-      app.playerChoice = 'paper';
       spyOn(app, 'sample').and.returnValue(1);
-      app.playGame();
+      app.playGame('paper');
       expect(app.winner).toEqual('tie');
     });
 
     it('sets the winner of the game if the player wins', () => {
-      app.playerChoice = 'rock';
       spyOn(app, 'sample').and.returnValue(2);
-      app.playGame();
+      app.playGame('rock');
       expect(app.winner).toEqual('player');
     });
 
     it('sets the winner of the game if the computer wins', () => {
-      app.playerChoice = 'paper';
       spyOn(app, 'sample').and.returnValue(2);
-      app.playGame();
+      app.playGame('paper');
       expect(app.winner).toEqual('computer');
     });
   });
@@ -64,6 +48,60 @@ describe('AppComponent', () => {
       expect(app.playerChoice).toBeFalsy();
       expect(app.computerChoice).toBeFalsy();
       expect(app.winner).toBeFalsy();
+    });
+  });
+
+  describe('the compiled template', () => {
+    let compiled: any;
+
+    beforeEach(() => {
+      fixture.detectChanges();
+      compiled = fixture.debugElement.nativeElement;
+    });
+
+    it('renders a button element for each weapon', () => {
+      expect(compiled.querySelectorAll('ul button').length).toEqual(3);
+    });
+
+    it('hides the list once a weapon is chosen', () => {
+      app.playGame('rock');
+      fixture.detectChanges();
+      expect(compiled.querySelectorAll('ul button').length).toBeFalsy();
+    });
+
+    it('displays the computers choice', () => {
+      spyOn(app, 'sample').and.returnValue(2);
+      app.playGame('rock');
+      fixture.detectChanges();
+      expect(compiled.querySelector('.computer-choice').textContent).toContain('scissors');
+    });
+
+    it('renders the game result if the player wins', () => {
+      spyOn(app, 'sample').and.returnValue(2);
+      app.playGame('rock');
+      fixture.detectChanges();
+      expect(compiled.querySelector('.result').textContent).toEqual('You win!');
+    });
+
+    it('renders the game result if the game is a tie', () => {
+      spyOn(app, 'sample').and.returnValue(1);
+      app.playGame('paper');
+      fixture.detectChanges();
+      expect(compiled.querySelector('.result').textContent).toEqual('The game was a tie');
+    });
+
+    it('renders the game result if the computer wins', () => {
+      spyOn(app, 'sample').and.returnValue(2);
+      app.playGame('rock');
+      fixture.detectChanges();
+      expect(compiled.querySelector('.result').textContent).toEqual('You win!');
+    });
+
+    it('renders a "play again" button once the game has ended', () => {
+      expect(compiled.querySelector('button.reset')).toBeFalsy();
+      app.playGame('paper');
+      fixture.detectChanges();
+      expect(compiled.querySelector('button.reset')).toBeTruthy();
     });
   });
 });
