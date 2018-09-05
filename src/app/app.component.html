@@ -1,6 +1,6 @@
 <h1>Rock, Paper, Scissors</h1>
 
-<ng-container *ngIf="!playerChoice">
+<section *ngIf="!playerChoice">
   <h2>Choose your weapon:</h2>
   <ul *ngFor="let weapon of weapons">
     <li>
@@ -9,7 +9,7 @@
       </button>
     </li>
   </ul>
-</ng-container>
+</section>
 
 <section *ngIf="winner">
   <p class="computer-choice">the computer chose {{ computerChoice }}</p>
@@ -19,4 +19,11 @@
   <p *ngIf="winner === 'tie'" class="result">The game was a tie</p>
 
   <button class="reset" (click)="resetGame()">Play again</button>
+</section>
+
+<section class="score" *ngIf="!!(score.player + score.computer)">
+  <ul>
+    <li>Player {{ score.player }}</li>
+    <li>{{ score.computer }} Computer</li>
+  </ul>
 </section>

@@ -103,5 +103,14 @@ describe('AppComponent', () => {
       fixture.detectChanges();
       expect(compiled.querySelector('button.reset')).toBeTruthy();
     });
+
+    it('renders the current score', () => {
+      spyOn(app, 'sample').and.returnValue(2);
+      app.playGame('rock');
+      fixture.detectChanges();
+
+      expect(compiled.querySelector('.score').textContent).toContain('Player 1');
+      expect(compiled.querySelector('.score').textContent).toContain('0 Computer');
+    });
   });
 });
