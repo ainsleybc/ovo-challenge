@@ -29,4 +29,10 @@ describe('rock, paper, scissors', () => {
     await page.clickButton('.paper');
     expect(page.isElementPresent('.play')).toBeTruthy();
   });
+
+  it('determines the winner of the game', async () => {
+    await page.clickButton('.paper');
+    await page.clickButton('.play');
+    expect(page.isElementPresent('.result')).toBeTruthy();
+  });
 });
