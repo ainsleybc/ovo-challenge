@@ -1,12 +1,10 @@
-<h1>Rock, Paper, Scissors</h1>
+<h1>Rock, Paper, Scissors.</h1>
 
 <section *ngIf="!playerChoice">
   <h2>Choose your weapon:</h2>
-  <ul *ngFor="let weapon of weapons">
-    <li>
-      <button [ngClass]="weapon" (click)="playGame(weapon)">
-        {{ weapon }}
-      </button>
+  <ul class="weapons">
+    <li *ngFor="let weapon of weapons">
+      <button [ngClass]="weapon" (click)="playGame(weapon)" name="{{ weapon }}"></button>
     </li>
   </ul>
 </section>
@@ -21,9 +19,10 @@
   <button class="reset" (click)="resetGame()">Play again</button>
 </section>
 
-<section class="score" *ngIf="!!(score.player + score.computer)">
-  <ul>
-    <li>Player {{ score.player }}</li>
-    <li>{{ score.computer }} Computer</li>
+<section *ngIf="!!(score.player + score.computer)">
+  <ul class="score">
+    <li class="score__player">Player - {{ score.player }}</li>
+    <li class="score__divider">|</li>
+    <li class="score__computer">{{ score.computer }} - Computer</li>
   </ul>
 </section>

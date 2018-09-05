@@ -9,7 +9,7 @@ describe('rock, paper, scissors', () => {
   });
 
   it('has correct heading text', () => {
-    expect(page.getHeadingText()).toEqual('Rock, Paper, Scissors');
+    expect(page.getHeadingText()).toEqual('Rock, Paper, Scissors.');
   });
 
   it('displays a rock weapon', () => {

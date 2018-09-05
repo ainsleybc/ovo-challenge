@@ -109,8 +109,8 @@ describe('AppComponent', () => {
       app.playGame('rock');
       fixture.detectChanges();
 
-      expect(compiled.querySelector('.score').textContent).toContain('Player 1');
-      expect(compiled.querySelector('.score').textContent).toContain('0 Computer');
+      expect(compiled.querySelector('.score').textContent).toContain('Player - 1');
+      expect(compiled.querySelector('.score').textContent).toContain('0 - Computer');
     });
   });
 });
