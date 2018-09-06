@@ -28,6 +28,8 @@ export class AppComponent {
 
     if (this.playerChoice === this.computerChoice) {
       this.winner = 'tie';
+      this.updateScore('player');
+      this.updateScore('computer');
     } else {
       this.winner = this.getWinner();
       this.updateScore(this.winner);

@@ -22,7 +22,8 @@ h1 {
   }
 }
 
-.weapons li {
+.weapons li,
+.reset {
   margin: 10px auto;
   width: 100px;
   height: 100px;
@@ -74,7 +75,14 @@ h1 {
   text-align: right;
 }
 
-.score__divider {
+.score__divider,
+.result {
   text-align: center;
 }
 
+.reset {
+  font-size: 1.1em;
+  color: #fff;
+  background-color: #0b440b;
+  margin: 50px 0;
+}

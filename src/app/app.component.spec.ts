@@ -40,6 +40,12 @@ describe('AppComponent', () => {
       app.playGame('paper');
       expect(app.winner).toEqual('computer');
     });
+
+    it('updates the score', () => {
+      spyOn(app, 'sample').and.returnValue(2);
+      app.playGame('paper');
+      expect(app.score).toEqual({ computer: 1, player: 0 });
+    });
   });
 
   describe('resetGame', () => {
@@ -80,21 +86,21 @@ describe('AppComponent', () => {
       spyOn(app, 'sample').and.returnValue(2);
       app.playGame('rock');
       fixture.detectChanges();
-      expect(compiled.querySelector('.result').textContent).toEqual('You win!');
+      expect(compiled.querySelector('.result h2').textContent).toEqual('You win!');
     });
 
     it('renders the game result if the game is a tie', () => {
       spyOn(app, 'sample').and.returnValue(1);
       app.playGame('paper');
       fixture.detectChanges();
-      expect(compiled.querySelector('.result').textContent).toEqual('The game was a tie');
+      expect(compiled.querySelector('.result h2').textContent).toEqual('The game was a tie');
     });
 
     it('renders the game result if the computer wins', () => {
       spyOn(app, 'sample').and.returnValue(2);
       app.playGame('rock');
       fixture.detectChanges();
-      expect(compiled.querySelector('.result').textContent).toEqual('You win!');
+      expect(compiled.querySelector('.result h2').textContent).toEqual('You win!');
     });
 
     it('renders a "play again" button once the game has ended', () => {
